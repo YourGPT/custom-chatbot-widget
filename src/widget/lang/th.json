@@ -1,0 +1,14 @@
+{
+  "Home": "หน้าแรก",
+  "Messages": "ข้อความ",
+  "Level": "ระดับ",
+  "PoweredBy": "ขับเคลื่อนโดย",
+  "TypeYourMessage": "พิมพ์ข้อความของคุณ",
+  "StartNewConversation": "เริ่มบทสนทนาใหม่",
+  "NoMessagesYet": "ยังไม่มีข้อความ",
+  "PleaseProvideDetails": "ขอบคุณสำหรับข้อความของคุณ! โปรดให้รายละเอียดต่อไปนี้",
+  "SavedSuccessfully": "บันทึกเรียบร้อยแล้ว",
+  "Saving": "กำลังบันทึก",
+  "NoQuestions": "ไม่มีคำถาม",
+  "Search": "ประหยัด"
+}

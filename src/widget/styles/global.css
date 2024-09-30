@@ -1,0 +1,75 @@
+.compactWidgetWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+}
+.compactWidgetWrapper .widgetBtnMiddle {
+  position: relative;
+}
+.compactWidgetWrapper .unseenCounter {
+  position: absolute;
+  background-color: #f2994a;
+  border-radius: 9999px;
+  height: 24px;
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.compactWidgetWrapper .header {
+  padding: 8px 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.compactWidgetWrapper .header .left {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.compactWidgetWrapper .header .left .name {
+  font-weight: 500;
+}
+.compactWidgetWrapper .header .right {
+  display: flex;
+}
+.compactWidgetWrapper .header .expander {
+  all: unset;
+  opacity: 0.5;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.compactWidgetWrapper .header .avatar img {
+  width: 32px;
+  aspect-ratio: 1;
+}
+.compactWidgetWrapper .scrollDiv {
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 8px 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.brandingBar {
+  padding: 4px 0px;
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.spinIt {
+  animation: spinIt 2s linear infinite;
+}
+
+@keyframes spinIt {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}/*# sourceMappingURL=global.css.map */

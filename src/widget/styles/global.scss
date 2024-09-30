@@ -1,0 +1,88 @@
+.compactWidgetWrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+  .widgetBtnMiddle {
+    position: relative;
+  }
+
+  .unseenCounter {
+    position: absolute;
+    background-color: #f2994a;
+    border-radius: 9999px;
+    height: 24px;
+    width: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header {
+    // ygpt-px-2 ygpt-py-3 ygpt-flex ygpt-justify-between ygpt-items-center
+    padding: 8px 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .left {
+      // ygpt-flex ygpt-gap-2 ygpt-items-center
+      display: flex;
+      gap: 8px;
+      align-items: center;
+
+      .name {
+        font-weight: 500;
+      }
+    }
+
+    .right {
+      display: flex;
+    }
+
+    .expander {
+      all: unset;
+      opacity: 0.5;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .avatar {
+      img {
+        width: 32px;
+        aspect-ratio: 1;
+      }
+    }
+  }
+
+  .scrollDiv {
+    // ygpt-overflow-x-hidden ygpt-overflow-y-auto ygpt-flex-1 ygpt-py-2 ygpt-flex ygpt-flex-col  ygpt-items-start
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 8px 0;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.brandingBar {
+  padding: 4px 0px;
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.spinIt {
+  animation: spinIt 2s linear infinite;
+}
+
+@keyframes spinIt {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

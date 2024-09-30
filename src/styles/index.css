@@ -1,0 +1,289 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:where(.ygpt-chatbot) {
+  /*
+  Add the correct text decoration in Chrome, Edge, and Safari.
+  */
+  /*
+  Remove the default font size and weight for headings.
+  */
+  /*
+  Reset links to optimize for opt-in styling instead of opt-out.
+  */
+  /*
+  Add the correct font weight in Edge and Safari.
+  */
+  /*
+  1. Use the user's configured `mono` font family by default.
+  2. Correct the odd `em` font sizing in all browsers.
+  */
+  /*
+  Add the correct font size in all browsers.
+  */
+  /*
+  Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+  */
+  /*
+  1. Change the font styles in all browsers.
+  2. Remove the margin in Firefox and Safari.
+  3. Remove default padding in all browsers.
+  */
+  /*
+  Remove the inheritance of text transform in Edge and Firefox.
+  */
+  /*
+  1. Correct the inability to style clickable types in iOS and Safari.
+  2. Remove default button styles.
+  */
+  /*
+  Use the modern Firefox focus style for all focusable elements.
+  */
+  /*
+  Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+  */
+  /*
+  Add the correct vertical alignment in Chrome and Firefox.
+  */
+  /*
+  Correct the cursor style of increment and decrement buttons in Safari.
+  */
+  /*
+  1. Correct the odd appearance in Chrome and Safari.
+  2. Correct the outline style in Safari.
+  */
+  /*
+  Remove the inner padding in Chrome and Safari on macOS.
+  */
+  /*
+  1. Correct the inability to style clickable types in iOS and Safari.
+  2. Change font properties to `inherit` in Safari.
+  */
+  /*
+  Add the correct display in Chrome and Safari.
+  */
+  /*
+  Removes the default spacing and border for appropriate elements.
+  */
+  /*
+  Reset default styling for dialogs.
+  */
+  /*
+  Prevent resizing textareas horizontally by default.
+  */
+  /*
+  1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+  2. Set the default placeholder color to the user's configured gray 400 color.
+  */
+  /*
+  Set the default cursor for buttons.
+  */
+  /*
+  Make sure disabled buttons don't get the pointer cursor.
+  */
+  /*
+  1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+  2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+     This can trigger a poorly considered lint error in some tools but is included by design.
+  */
+  /*
+  Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+  */
+  /* Make elements with the HTML hidden attribute stay hidden by default */
+}
+:where(.ygpt-chatbot) *,
+:where(.ygpt-chatbot) ::before,
+:where(.ygpt-chatbot) ::after {
+  box-sizing: border-box; /* 1 */
+  border-width: 0; /* 2 */
+  border-style: solid; /* 2 */
+  border-color: theme("borderColor.DEFAULT", currentColor); /* 2 */
+}
+:where(.ygpt-chatbot) ::before,
+:where(.ygpt-chatbot) ::after {
+  --tw-content: "";
+}
+:where(.ygpt-chatbot) hr {
+  height: 0; /* 1 */
+  color: inherit; /* 2 */
+  border-top-width: 1px; /* 3 */
+}
+:where(.ygpt-chatbot) abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+:where(.ygpt-chatbot) h1,
+:where(.ygpt-chatbot) h2,
+:where(.ygpt-chatbot) h3,
+:where(.ygpt-chatbot) h4,
+:where(.ygpt-chatbot) h5,
+:where(.ygpt-chatbot) h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+:where(.ygpt-chatbot) a {
+  color: inherit;
+  text-decoration: inherit;
+}
+:where(.ygpt-chatbot) b,
+:where(.ygpt-chatbot) strong {
+  font-weight: bolder;
+}
+:where(.ygpt-chatbot) code,
+:where(.ygpt-chatbot) kbd,
+:where(.ygpt-chatbot) samp,
+:where(.ygpt-chatbot) pre {
+  font-family: theme("fontFamily.mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace); /* 1 */
+  font-size: 1em; /* 2 */
+}
+:where(.ygpt-chatbot) small {
+  font-size: 80%;
+}
+:where(.ygpt-chatbot) sub,
+:where(.ygpt-chatbot) sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+:where(.ygpt-chatbot) sub {
+  bottom: -0.25em;
+}
+:where(.ygpt-chatbot) sup {
+  top: -0.5em;
+}
+:where(.ygpt-chatbot) table {
+  text-indent: 0; /* 1 */
+  border-color: inherit; /* 2 */
+  border-collapse: collapse; /* 3 */
+}
+:where(.ygpt-chatbot) button,
+:where(.ygpt-chatbot) input,
+:where(.ygpt-chatbot) optgroup,
+:where(.ygpt-chatbot) select,
+:where(.ygpt-chatbot) textarea {
+  font-family: inherit; /* 1 */
+  font-feature-settings: inherit; /* 1 */
+  font-variation-settings: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  font-weight: inherit; /* 1 */
+  line-height: inherit; /* 1 */
+  color: inherit; /* 1 */
+  margin: 0; /* 2 */
+  padding: 0; /* 3 */
+}
+:where(.ygpt-chatbot) button,
+:where(.ygpt-chatbot) select {
+  text-transform: none;
+}
+:where(.ygpt-chatbot) button,
+:where(.ygpt-chatbot) [type=button],
+:where(.ygpt-chatbot) [type=reset],
+:where(.ygpt-chatbot) [type=submit] {
+  -webkit-appearance: button; /* 1 */
+  background-color: transparent; /* 2 */
+  background-image: none; /* 2 */
+}
+:where(.ygpt-chatbot) :-moz-focusring {
+  outline: auto;
+}
+:where(.ygpt-chatbot) :-moz-ui-invalid {
+  box-shadow: none;
+}
+:where(.ygpt-chatbot) progress {
+  vertical-align: baseline;
+}
+:where(.ygpt-chatbot) ::-webkit-inner-spin-button,
+:where(.ygpt-chatbot) ::-webkit-outer-spin-button {
+  height: auto;
+}
+:where(.ygpt-chatbot) [type=search] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+:where(.ygpt-chatbot) ::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+:where(.ygpt-chatbot) ::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+:where(.ygpt-chatbot) summary {
+  display: list-item;
+}
+:where(.ygpt-chatbot) blockquote,
+:where(.ygpt-chatbot) dl,
+:where(.ygpt-chatbot) dd,
+:where(.ygpt-chatbot) h1,
+:where(.ygpt-chatbot) h2,
+:where(.ygpt-chatbot) h3,
+:where(.ygpt-chatbot) h4,
+:where(.ygpt-chatbot) h5,
+:where(.ygpt-chatbot) h6,
+:where(.ygpt-chatbot) hr,
+:where(.ygpt-chatbot) figure,
+:where(.ygpt-chatbot) p,
+:where(.ygpt-chatbot) pre {
+  margin: 0;
+}
+:where(.ygpt-chatbot) fieldset {
+  margin: 0;
+  padding: 0;
+}
+:where(.ygpt-chatbot) legend {
+  padding: 0;
+}
+:where(.ygpt-chatbot) ol,
+:where(.ygpt-chatbot) ul,
+:where(.ygpt-chatbot) menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+:where(.ygpt-chatbot) dialog {
+  padding: 0;
+}
+:where(.ygpt-chatbot) textarea {
+  resize: vertical;
+}
+:where(.ygpt-chatbot) input::-moz-placeholder, :where(.ygpt-chatbot) textarea::-moz-placeholder {
+  opacity: 1; /* 1 */
+  color: theme("colors.gray.400", #9ca3af); /* 2 */
+}
+:where(.ygpt-chatbot) input::placeholder,
+:where(.ygpt-chatbot) textarea::placeholder {
+  opacity: 1; /* 1 */
+  color: theme("colors.gray.400", #9ca3af); /* 2 */
+}
+:where(.ygpt-chatbot) button,
+:where(.ygpt-chatbot) [role=button] {
+  cursor: pointer;
+}
+:where(.ygpt-chatbot) :disabled {
+  cursor: default;
+}
+:where(.ygpt-chatbot) img,
+:where(.ygpt-chatbot) svg,
+:where(.ygpt-chatbot) video,
+:where(.ygpt-chatbot) canvas,
+:where(.ygpt-chatbot) audio,
+:where(.ygpt-chatbot) iframe,
+:where(.ygpt-chatbot) embed,
+:where(.ygpt-chatbot) object {
+  display: block; /* 1 */
+  vertical-align: middle; /* 2 */
+}
+:where(.ygpt-chatbot) [hidden] {
+  display: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+}/*# sourceMappingURL=index.css.map */

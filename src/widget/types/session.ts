@@ -1,0 +1,21 @@
+export type SessionItemApiD = {
+  id: any;
+  project_id?: number;
+  integration_id?: number;
+  status?: string;
+  device_type?: string;
+  platform?: string;
+  ip?: any;
+  country?: any;
+  session_uid: string;
+  contact_id?: any;
+  provider_session_id?: any;
+  is_notified?: number;
+  chat_mode?: any;
+  visitor_id?: number;
+  createdAt: any;
+  updatedAt: any;
+  last_message: string;
+  total_unseen?: any;
+  session_messages: any[];
+};

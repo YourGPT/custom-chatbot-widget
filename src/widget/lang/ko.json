@@ -1,0 +1,14 @@
+{
+  "Home": "홈",
+  "Messages": "메시지",
+  "Level": "레벨",
+  "PoweredBy": "제공자:",
+  "TypeYourMessage": "메시지 입력",
+  "StartNewConversation": "새 대화 시작",
+  "NoMessagesYet": "아직 메시지가 없습니다",
+  "PleaseProvideDetails": "메시지를 보내주셔서 감사합니다! 아래 세부 정보를 입력해주세요",
+  "SavedSuccessfully": "성공적으로 저장되었습니다",
+  "Saving": "저장 중",
+  "NoQuestions": "질문 없음",
+  "Search": "검색"
+}
