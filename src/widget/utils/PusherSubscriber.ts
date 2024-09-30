@@ -1,18 +1,12 @@
 import Pusher from "pusher-js";
 
-
-
-const PusherData = {
-  key: "840e896e0629989acd53",
-  cluster: "ap2",
-};
 class PusherSubscriber {
   private static instance: PusherSubscriber;
   private pusher: Pusher;
 
   private constructor() {
-    this.pusher = new Pusher(PusherData.key, {
-      cluster: PusherData.cluster,
+    this.pusher = new Pusher(import.meta.env.VITE_key, {
+      cluster: import.meta.env.VITE_cluster,
     });
   }
 
