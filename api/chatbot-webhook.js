@@ -65,10 +65,10 @@ const apiStatus = {
 };
 
 const PusherData = {
-  app_id: import.meta.env.VITE_app_id,
-  key: import.meta.env.VITE_key,
-  secret: import.meta.env.VITE_secret,
-  cluster: import.meta.env.VITE_cluster,
+  app_id: import.meta.env.VITE_PUSHER_APP_ID,
+  key: import.meta.env.VITE_PUSHER_KEY,
+  secret: import.meta.env.VITE_PUSHER_SECRET,
+  cluster: import.meta.env.VITE_PUSHER_CLUSTER,
 };
 
 // Auth signature components:

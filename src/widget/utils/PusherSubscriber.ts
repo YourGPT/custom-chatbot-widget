@@ -5,8 +5,8 @@ class PusherSubscriber {
   private pusher: Pusher;
 
   private constructor() {
-    this.pusher = new Pusher(import.meta.env.VITE_key, {
-      cluster: import.meta.env.VITE_cluster,
+    this.pusher = new Pusher(import.meta.env.VITE_PUSHER_KEY, {
+      cluster: import.meta.env.VITE_PUSHER_CLUSTER,
     });
   }
 
