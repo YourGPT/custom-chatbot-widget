@@ -3,7 +3,7 @@ import { parseStreamString } from "./helper";
 export const errorMessage = "Unable to process your request at the moment. Please try again.";
 
 export async function handleStream({ data, messages, setMessages, setGenerating, getFollowUps, setThinking }) {
-  if (data.type === "stream" && data?.stream_url) {
+  if (data.stream && data?.stream_url) {
     setThinking(true);
 
     // const streamIndex = messages.length + 1;

@@ -15,10 +15,11 @@ export type SessionData = {
   token: string;
 };
 
-export type MessagesReceivedType = "text" | "stream";
+export type MessagesReceivedType = "text";
 
 export type MessageEventResponse = {
   type?: MessagesReceivedType;
+  stream?: boolean;
   send_by: MessageFrom;
   origin?: string;
   localId: any;

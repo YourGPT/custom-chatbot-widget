@@ -168,7 +168,7 @@ const useHandleMessageReceived: UseHandleMessageReceived = ({ messages, setMessa
 
       getFollowUp(data.message_id);
 
-      if (data.type === "stream" && data?.stream_url) {
+      if (data.stream && data?.stream_url) {
         //if tab is not active then return
         if (!browserTabActive) {
           return;
