@@ -16,6 +16,8 @@ let widgetUid: string;
 
 const res = getChatbotCreds();
 
+console.log(res, "res");
+
 if (res?.widgetUid) {
   widgetUid = res.widgetUid;
   console.log(widgetUid, "widgetUid");

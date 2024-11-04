@@ -61,7 +61,7 @@ export const getChatbotCreds = (): { widgetUid: string; fullPage: boolean } | nu
 
     const cssCheck = document.getElementById("ygc-custom-widget-root")?.classList.contains("ygc_fullscreen");
 
-    if (domainName === FULL_SCREEN_ROUTE || cssCheck) {
+    if (cssCheck) {
       if (splitted.length === 2) {
         return {
           widgetUid: splitted[1] || "",
