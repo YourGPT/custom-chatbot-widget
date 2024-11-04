@@ -1,7 +1,7 @@
 import { parseToHsl } from "polished";
 import { DeviceTypeD, PlatformTypeD } from "../types";
 import { MessageD, RenderMessageItem } from "../types/message";
-import { FULL_SCREEN_ROUTE } from "./constants";
+// import { FULL_SCREEN_ROUTE } from "./constants";
 import { SessionData } from "../types/socket";
 
 const AUDIO = new Audio("https://assets.yourgpt.ai/widget/messageSound3.mp3");
@@ -55,7 +55,7 @@ export const getChatbotCreds = (): { widgetUid: string; fullPage: boolean } | nu
       };
     }
     const currentPath = window?.location?.pathname;
-    const domainName = window?.location?.hostname;
+    // const domainName = window?.location?.hostname;
 
     const splitted = currentPath.split("/");
 
