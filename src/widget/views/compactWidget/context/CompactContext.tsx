@@ -55,9 +55,9 @@ export default function CompactChatbotProvider({ children }: { children: React.R
   const messages = useMessageStore((state) => state.messages);
   const setMessages = useMessageStore((state) => state.setMessages);
 
-  useEffect(() => {
-    console.log("messages", messages);
-  }, [messages]);
+  // useEffect(() => {
+  //   console.log("messages", messages);
+  // }, [messages]);
 
   const [sessionData, setSessionData] = useState<SessionData | null>(null);
 
@@ -387,7 +387,7 @@ export default function CompactChatbotProvider({ children }: { children: React.R
         message,
         sessionUid: sessionData?.session_uid,
         widgetUid,
-        showSuggestedQs: true,
+        showSuggestedQs: setting?.layout?.followUpSuggestions || false,
         shouldStream: setting?.is_stream === "1" ? true : false,
         setThinking: (a: any) => {
           setLoadingStatus(a || null);
@@ -404,7 +404,7 @@ export default function CompactChatbotProvider({ children }: { children: React.R
       //   });
       // }
     },
-    [sessionData, widgetUid, setting?.is_stream]
+    [sessionData, widgetUid, setting]
   );
 
   //

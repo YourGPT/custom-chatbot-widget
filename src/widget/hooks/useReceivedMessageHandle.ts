@@ -52,6 +52,7 @@ const useHandleMessageReceived: UseHandleMessageReceived = ({ messages, setMessa
 
   const generateFollowUpQuestions = useCallback(
     async ({ id }: { id: any }) => {
+      if (!layout?.followUpSuggestions) return;
       try {
         if (!sessionData?.session_uid || !id || !widgetUid) return;
         const res = await generateFollowUpQuestionsApi({

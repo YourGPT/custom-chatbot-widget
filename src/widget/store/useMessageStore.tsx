@@ -175,8 +175,6 @@ const useMessageStore = create<MesssageStore>()(
     GET FOLLOW UPS 
     */
     getFollowUps: async function getFollowUps({ messageId, sessionUid, widgetUid }: getFollowUpT) {
-      console.log("getFollowUps", messageId, sessionUid, widgetUid);
-
       if (!messageId || !sessionUid || !widgetUid) return;
       try {
         const res = await generateFollowUpQuestionsApi({
