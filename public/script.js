@@ -1,6 +1,6 @@
 // const WIDGET_ENDPOINT = "https://widget.yourgpt.ai";
 const WIDGET_ENDPOINT = "https://custom-widget-ten.vercel.app";
-const WHITELABEL_WIDGET_ENDPOINT = "https://widget.d4ai.cx";
+const WHITELABEL_WIDGET_ENDPOINT = "https://widget.d4ai.chat";
 
 //SDK
 const YOURGPT_CHATBOT_SDK = {

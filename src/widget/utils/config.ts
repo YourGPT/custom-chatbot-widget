@@ -4,8 +4,8 @@ import { getChatbotCreds } from "./helper";
 export const API_ENDPOINT = "https://api.yourgpt.ai";
 export const SOCKET_ENDPOINT = "https://wss.yourgpt.ai";
 
-export const WHITELABEL_API_ENDPOINT = "https://api.d4ai.cx";
-export const WHITELABEL_SOCKET_ENDPOINT = "https://wss.d4ai.cx";
+export const WHITELABEL_API_ENDPOINT = "https://api.d4ai.chat";
+export const WHITELABEL_SOCKET_ENDPOINT = "https://wss.d4ai.chat";
 
 let isYourGpt = true;
 
