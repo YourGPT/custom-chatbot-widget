@@ -4,7 +4,7 @@ export const getChatbotSettingApi = (data: { widget_uid: string }) => {
   const raw = new URLSearchParams();
   raw.append("widget_uid", data.widget_uid);
   return post({
-    route: `/api/v1/public/getChatbotSetting`,
+    route: "/chatbot/v1/public/getChatbotSetting",
     data: raw,
     config: {
       headers: {
@@ -103,32 +103,6 @@ export const sendMessageApi = ({ ...raw }: { session_uid: string; message: strin
     config: {
       headers: {
         "Content-type": "application/json",
-      },
-    },
-  });
-};
-
-export const getChatbotsApi = ({ token, ...raw }: { token: string; app_id: string; limit: string; page: string; orderBy: "asc" | "desc" }) => {
-  return post({
-    route: "/api/v1/getMyProjects",
-    data: JSON.stringify({ ...raw }),
-    config: {
-      headers: {
-        Authorization: "Bearer " + token,
-        "Content-type": "application/json",
-      },
-    },
-  });
-};
-
-export const getIntegrationSettingsApi = (data: { token: string; app_id: string; integration_id: string; project_uid: string }) => {
-  return post({
-    route: "/api/v1/getIntegrationSettings",
-    data: JSON.stringify(data),
-    config: {
-      headers: {
-        "Content-type": "application/json",
-        Authorization: "Bearer " + data.token,
       },
     },
   });
