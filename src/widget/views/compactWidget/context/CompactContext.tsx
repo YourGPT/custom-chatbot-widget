@@ -85,6 +85,8 @@ export default function CompactChatbotProvider({ children }: { children: React.R
     // console.log("message", message);
 
     if (!message?.id && message?.response_source !== "studio_response") return;
+    //if message type is not 0 then return 0-> message
+    if (message?.type !== 0) return;
 
     const nMessages = [...messages];
     if (nMessages.length > 1) {
