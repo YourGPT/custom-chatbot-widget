@@ -45,6 +45,8 @@ export default function CompactChatbotProvider({ children }: { children: React.R
   const { chatbotPopup, widgetUid, deletedSession, setActiveSession, setUnseenMessageCount, toSendMessageQueue, setToSendMessageQueue, activeSession, setFollowUpQuestions } = useChatbot();
   const { setting } = useWidget();
   const setFollowUps = useMessageStore((state) => state.setFollowUps);
+  const clearStream = useMessageStore((state) => state.clearStream);
+  const clearAllStreams = useMessageStore((state) => state.clearAllStreams);
 
   /**
   /**
@@ -101,6 +103,14 @@ export default function CompactChatbotProvider({ children }: { children: React.R
       nMessages.push(message);
     }
     setMessages(nMessages);
+
+    // Clear any streaming state for this message id and stop loading/streaming UI
+    if (message?.id) {
+      try {
+        clearStream(String(message.id));
+      } catch (_) {}
+    }
+    setLoadingStatus(null);
   }
 
   // const handleMessageEdited = useEditedMessageHandle({ messages, setMessages });
@@ -323,10 +333,11 @@ export default function CompactChatbotProvider({ children }: { children: React.R
     setLeadTempMessage("");
     setFollowUps([]);
     setFollowUpQuestions({});
+    clearAllStreams();
     // setLeadPending(setting?.enable_widget_form ? true : false);
     StorageManager.clearCompactSession(widgetUid);
     createSession();
-  }, [setting, widgetUid, createSession]);
+  }, [setting, widgetUid, createSession, clearAllStreams]);
 
   /**
    * SOCKET HANDLES

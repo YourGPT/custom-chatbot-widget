@@ -1,7 +1,7 @@
 import Header from "./Header";
 import Footer from "./Footer";
 import DefaultQuestionsChips from "../../../../(components)/DefaultQuestionsChips";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useCompactChatbot } from "../../context/CompactContext";
 import { useWidget } from "../../../../context/WidgetContext";
 import { ScrollDiv } from "../../../../(components)/styles";
@@ -17,6 +17,7 @@ import LoadingDots from "../../../../(components)/MessageLoaders/LoadingDots";
 import FollowUpQuestions from "../../../../(components)/FollowUpQuestions";
 import styled from "styled-components";
 import ErrorBar from "../../../../(components)/ErrorBar";
+import useMessageStore from "../../../../store/useMessageStore";
 
 export default function Chatbot() {
   const { messages, onMessageSend, sessionData, loadingStatus, creatingSession } = useCompactChatbot();
@@ -24,6 +25,7 @@ export default function Chatbot() {
 
   const { layout } = useWidget();
   const { locale, defaultLocale } = useLanguage();
+  const streamingMap = useMessageStore((s) => s.streaming);
 
   const chatContainerRef = useRef<HTMLDivElement | null>(null);
   // const [userScrolledUp, setUserScrolledUp] = useState(false);
@@ -43,7 +45,7 @@ export default function Chatbot() {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, loadingStatus]);
+  }, [messages, loadingStatus, streamingMap]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -77,6 +79,10 @@ export default function Chatbot() {
       onMessageSend(message);
     }
   };
+
+  const streamingItems = useMemo(() => {
+    return Object.entries(streamingMap).map(([id, item]) => ({ id, ...item }));
+  }, [streamingMap]);
 
   return (
     <div className="compactWidgetWrapper">
@@ -125,6 +131,19 @@ export default function Chatbot() {
             loading
           />
         )}
+
+        {loadingStatus === "streaming" &&
+          streamingItems.map((sItem) => (
+            <ChatItem2
+              key={`stream-${sItem.id || "pending"}`}
+              message={{
+                send_by: "assistant",
+                createdAt: null,
+                localId: `stream-${sItem.id || "pending"}`,
+                message: sItem.streamText,
+              }}
+            />
+          ))}
 
         {/* {leadTempMessage && (
           <>

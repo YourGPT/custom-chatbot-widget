@@ -2,28 +2,22 @@ import { parseStreamString } from "./helper";
 
 export const errorMessage = "Unable to process your request at the moment. Please try again.";
 
-export async function handleStream({ data, messages, setMessages, setGenerating, getFollowUps, setThinking }) {
+export async function handleStream({
+  data,
+  setGenerating,
+  getFollowUps,
+  setThinking,
+  onUpdate,
+}: {
+  data: any;
+  setGenerating: any;
+  getFollowUps: (msgId: string) => void;
+  setThinking: (payload: any) => void;
+  onUpdate: (payload: { text: string; messageId?: string; finished?: boolean }) => void;
+}) {
   if (data.stream && data?.stream_url) {
-    setThinking(true);
-
-    // const streamIndex = messages.length + 1;
-
-    const streamIndex = messages.length;
-
-    const newMessages = [
-      ...messages,
-      {
-        ...data,
-        loadingStatus: "loading",
-        localId: Date.now(),
-        send_by: "assistant",
-        stream: true,
-        createdAt: null,
-        message: "",
-      },
-    ];
-
-    setMessages(newMessages);
+    // Initially show loading until we receive first chunk
+    setThinking("loading");
 
     let messageId: null | number = null;
     getStreamData({
@@ -31,31 +25,25 @@ export async function handleStream({ data, messages, setMessages, setGenerating,
       token: data.stream_token,
       setGenerating,
       onUpdate: (res: any) => {
-        setThinking(false);
+        // Keep "loading" until non-empty text is received, then switch to "streaming". Clear on finish.
+        if (res.finished) {
+          setThinking(null);
+        } else if (res.res && String(res.res).trim().length > 0) {
+          setThinking("streaming");
+        } else {
+          setThinking("loading");
+        }
+
         if (res.messageId) {
           messageId = res.messageId;
           getFollowUps(messageId!.toString());
         }
 
-        const updatedMessages = [...newMessages];
-
-        updatedMessages[streamIndex] = {
-          ...updatedMessages[streamIndex],
-          loadingStatus: res.finished ? null : "streaming",
-          message: res.res,
-          id: Number(messageId || -1) || updatedMessages[streamIndex].message_id || 0,
-          createdAt: res.finished ? Date.now() : null,
-          // links: res?.links || updatedMessages[streamIndex]?.links || [],
-          // ...(res?.links && res?.case === StreamEvents.LEARN_MORE_LINKS && showLearnMores && { links: res?.links }),
-        };
-
-        if (updatedMessages[streamIndex].loadingStatus === "loading" || updatedMessages[streamIndex].loadingStatus === "streaming") {
-          setGenerating(true);
-        } else if (res?.finished || updatedMessages[streamIndex].loadingStatus === null) {
-          setGenerating(false);
-        }
-
-        setMessages(updatedMessages);
+        onUpdate({
+          text: res.res,
+          messageId: messageId ? String(messageId) : undefined,
+          finished: !!res.finished,
+        });
       },
     });
   }
@@ -111,10 +99,19 @@ export const getStreamData = async ({
         onListen: (event: any, data: any) => {
           switch (event) {
             case StreamEvents.RESPONSE:
-              if (data && data.id && response.trim()) {
+              // Newer format: data is an object { message: string, id?: string | null }
+              if (data && typeof data === "object" && ("message" in data || "id" in data)) {
+                response = String(data?.message ?? "");
                 onUpdate({
                   res: response,
-                  messageId: data.id,
+                  messageId: data?.id ?? undefined,
+                });
+              } else if (typeof data === "string") {
+                // Legacy format: raw string chunks
+                response = response + data;
+                response = parseStreamString(response);
+                onUpdate({
+                  res: response,
                 });
               }
               break;

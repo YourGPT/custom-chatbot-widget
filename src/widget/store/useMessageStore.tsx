@@ -35,12 +35,16 @@ type MesssageStore = {
   fetchingMsgs: boolean;
   thinking: boolean;
   followUps: FollowUpQuestionsD[];
+  streaming: Record<string, { id?: string; streamText: string; streaming: boolean }>;
   setGenerating: (payload: boolean) => void;
   getMessages: ({ sessionUid, widgetUid }: commonT) => void;
   sendMessage: ({ sessionUid, widgetUid, message, showSuggestedQs, setThinking }: sendMsgT) => void;
   getFollowUps: ({ messageId, sessionUid, widgetUid }: getFollowUpT) => void;
   setFollowUps: (payload: any[]) => void;
   setMessages: (payload: MessageD[]) => void;
+  setStreamChunk: (payload: { id?: string; text: string; finished?: boolean }) => void;
+  clearStream: (id: string) => void;
+  clearAllStreams: () => void;
 };
 
 const useMessageStore = create<MesssageStore>()(
@@ -51,6 +55,7 @@ const useMessageStore = create<MesssageStore>()(
     generating: false,
     fetchingMsgs: false,
     thinking: false,
+    streaming: {},
 
     setGenerating: (payload: boolean) => {
       set((state) => {
@@ -94,6 +99,46 @@ const useMessageStore = create<MesssageStore>()(
       });
     },
 
+    setStreamChunk: ({ id, text, finished = false }: { id?: string; text: string; finished?: boolean }) => {
+      set((state) => {
+        const pendingKey = "__pending__";
+        let targetKey = id || pendingKey;
+
+        // Initialize entry if not present
+        // Note: not using the 'existing' value beyond initialization to avoid linter warnings
+        state.streaming[targetKey] = state.streaming[targetKey] || { id: id, streamText: "", streaming: true };
+        // Since upstream sends full accumulated text, just set it
+        state.streaming[targetKey] = { id, streamText: text, streaming: !finished };
+
+        // If an id becomes available and we had pending, migrate and delete pending
+        if (id && state.streaming[pendingKey]) {
+          state.streaming[id] = { id, streamText: text, streaming: !finished };
+          delete state.streaming[pendingKey];
+        }
+
+        if (finished) {
+          if (id) {
+            delete state.streaming[id];
+          } else {
+            delete state.streaming[pendingKey];
+          }
+        }
+      });
+    },
+
+    clearStream: (id: string) => {
+      set((state) => {
+        if (state.streaming[id]) delete state.streaming[id];
+        if (state.streaming["__pending__"]) delete state.streaming["__pending__"];
+      });
+    },
+
+    clearAllStreams: () => {
+      set((state) => {
+        state.streaming = {};
+      });
+    },
+
     /*
     SEND MESSAGE 
     */
@@ -132,21 +177,21 @@ const useMessageStore = create<MesssageStore>()(
           if (res?.data?.stream_url || res?.data?.stream_token) {
             await handleStream({
               data: res?.data,
-              messages: get().messages,
-              setMessages: (payload: MessageD[]) => {
-                set((state) => {
-                  state.messages = payload;
-                });
-              },
               getFollowUps: (msgId: string) => {
                 if (!msgId || !showSuggestedQs) return;
                 get().getFollowUps({ messageId: msgId, sessionUid, widgetUid });
               },
               setGenerating: get().setGenerating,
-              setThinking: (payload: boolean) => {
+              setThinking: (status: any) => {
+                // Pass through to UI loadingStatus controller
+                setThinking(status);
+                // Maintain boolean thinking flag internally for any legacy usage
                 set((state) => {
-                  state.thinking = payload;
+                  state.thinking = status === "loading" || status === "streaming";
                 });
+              },
+              onUpdate: ({ text, messageId, finished }) => {
+                get().setStreamChunk({ id: messageId, text, finished });
               },
             });
           } else {
