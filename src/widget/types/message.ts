@@ -19,7 +19,7 @@ export type SessionMessageItem = {
   // createdAt: string;
 };
 
-export type MessagesLoadingStatus = "loading" | "typing" | null;
+export type MessagesLoadingStatus = "loading" | "streaming" | "typing" | null;
 
 export type RenderMessageItem = {
   text: string;
