@@ -15,7 +15,7 @@ export const getChatbotSettingApi = (data: { widget_uid: string }) => {
 };
 export const getSessionsApi = (data: { visitor_uid: string; page?: number; limit?: number; orderBy: "asc" | "desc"; widget_uid: string }) => {
   return post({
-    route: `/chatbot/v1/getSessionByVisitorId`,
+    route: `/chatbot/v1/public/getSessionByVisitorId`,
     data: JSON.stringify(data),
     config: {
       headers: {
@@ -27,7 +27,7 @@ export const getSessionsApi = (data: { visitor_uid: string; page?: number; limit
 
 export const getSessionMessagesApi = (data: { session_uid: string; limit?: number; page?: number }) => {
   return post({
-    route: `/chatbot/v1/getSessionMessage`,
+    route: `/chatbot/v1/public/getSessionMessage`,
     data: JSON.stringify(data),
     config: {
       headers: {
@@ -39,7 +39,7 @@ export const getSessionMessagesApi = (data: { session_uid: string; limit?: numbe
 
 export const submitLeadFormApi = (data: { session_uid: string; data: any; visitor_uid: string; widget_uid: string }) => {
   return post({
-    route: `/chatbot/v1/submitPrechattingForm`,
+    route: `/chatbot/v1/public/submitPrechattingForm`,
     data: JSON.stringify(data),
     config: {
       headers: {
@@ -50,7 +50,7 @@ export const submitLeadFormApi = (data: { session_uid: string; data: any; visito
 };
 export const getMessageSignedUrlApi = (data: { file_name: string; project_id: string }) => {
   return post({
-    route: `/chatbot/v1/getMessageSignedUrl`,
+    route: `/chatbot/v1/public/getMessageSignedUrl`,
     data: JSON.stringify(data),
     config: {
       headers: {
@@ -62,7 +62,7 @@ export const getMessageSignedUrlApi = (data: { file_name: string; project_id: st
 
 export const generateFollowUpQuestionsApi = (data: { session_uid: string; widget_uid: string; message_id: string }) => {
   return post({
-    route: `/chatbot/v1/generateFollowupQuestion`,
+    route: `/chatbot/v1/public/generateFollowupQuestion`,
     data: JSON.stringify(data),
     config: {
       headers: {
@@ -74,7 +74,7 @@ export const generateFollowUpQuestionsApi = (data: { session_uid: string; widget
 
 export const textToSpeechApi = (data: { widget_uid: string; session_uid: string; message_id: string }) => {
   return post({
-    route: `/chatbot/v1/textToSpeech`,
+    route: `/chatbot/v1/public/textToSpeech`,
     data: JSON.stringify(data),
     config: {
       headers: {
